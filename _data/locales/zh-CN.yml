@@ -1,0 +1,22 @@
+layout:
+  post: 文章
+  category: 分类
+  tag: 标签
+
+tabs:
+  home: 首页
+  categories: 分类
+  tags: 标签
+  archives: 归档
+  about: 关于
+
+search:
+  hint: 搜索
+  cancel: 取消
+  no_results: 搜索结果为空
+
+# 日期时间格式本地化
+df:
+  post:
+    strftime: "%Y/%m/%d"  # 年月日格式
+    dayjs: "YYYY/MM/DD"
