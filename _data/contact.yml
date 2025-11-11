@@ -3,9 +3,8 @@
 - type: github
   icon: "fab fa-github"
 
-- type: leetcode
-  icon: "custom-fa-leetcode"
-  url: "https://leetcode.cn/u/fuluwa"
+- type: twitter
+  icon: "fa-brands fa-x-twitter"
 
 - type: email
   icon: "fas fa-envelope"
