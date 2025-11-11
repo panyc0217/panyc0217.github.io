@@ -23,22 +23,22 @@ description: >- # used by seo meta and the atom feed
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
-url: "https://panyc2000.github.io"
+url: "https://panyc027.github.io"
 
 github:
-  username: panyc2000 # change to your GitHub username
+  username: panyc0217 # change to your GitHub username
 
 twitter:
-  username: twitter_username # change to your Twitter username
+  username: panyc0217 # change to your Twitter username
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: panyc2000
+  name: panyc0217
   email: 1661369678@qq.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://github.com/panyc2000
+    - https://github.com/panyc0217
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
@@ -117,7 +117,7 @@ comments:
     repo: # <gh-username>/<repo>
     issue_term: # < url | pathname | title | ...>
   giscus:
-    repo: panyc2000/panyc2000.github.io
+    repo: panyc0217/panyc0217.github.io
     repo_id: R_kgDOQQNstw
     category: General
     category_id: DIC_kwDOQQNst84CxmQF
