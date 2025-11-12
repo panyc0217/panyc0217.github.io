@@ -494,3 +494,55 @@ h4 {
     scroll-margin-top: 2rem;
   }
 }
+
+/* --- Copyright Notice --- */
+
+.post-copyright {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--prompt-tip-icon-color);
+  background-color: var(--card-bg);
+  border-radius: v.$radius-sm;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+
+  .copyright-item {
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    strong {
+      color: var(--text-color);
+      font-weight: 600;
+      margin-right: 0.25rem;
+    }
+
+    span {
+      color: var(--text-muted-color);
+    }
+
+    a {
+      color: var(--link-color);
+      text-decoration: none;
+      word-break: break-all;
+
+      &:hover {
+        @extend %link-hover;
+      }
+    }
+  }
+
+  @include bp.lte(bp.get(sm)) {
+    padding: 0.875rem 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    .copyright-item {
+      font-size: 0.8125rem;
+    }
+  }
+}
