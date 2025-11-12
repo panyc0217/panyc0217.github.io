@@ -1,0 +1,73 @@
+/*
+ * CSS 变量定义 - 蓝白配色主题
+ *
+ * 包含现代化主题的所有CSS变量：
+ * - 蓝白配色方案（清爽、简洁、专业）
+ * - 毛玻璃效果变量
+ * - 阴影层次定义
+ * - 圆角尺寸
+ * - 动画时长和缓动函数
+ * - 暗色模式变量覆盖
+ */
+
+:root {
+  /* 蓝白配色方案 */
+  --modern-primary: #2563eb;                    /* 鲜艳蓝色 */
+  --modern-primary-light: rgba(37, 99, 235, 0.1);
+  --modern-primary-rgb: 37, 99, 235;
+  --modern-gradient: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+
+  /* 蓝色系色阶 */
+  --blue-50: #eff6ff;
+  --blue-100: #dbeafe;
+  --blue-200: #bfdbfe;
+  --blue-300: #93c5fd;
+  --blue-400: #60a5fa;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --blue-700: #1d4ed8;
+  --blue-800: #1e40af;
+  --blue-900: #1e3a8a;
+
+  /* 毛玻璃效果 - 更白更透明 */
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(37, 99, 235, 0.1);
+  --glass-shadow: 0 8px 32px rgba(37, 99, 235, 0.08);
+
+  /* 阴影层次 - 带淡蓝色调 */
+  --shadow-sm: 0 2px 8px rgba(37, 99, 235, 0.06);
+  --shadow-md: 0 4px 16px rgba(37, 99, 235, 0.08);
+  --shadow-lg: 0 8px 32px rgba(37, 99, 235, 0.12);
+  --shadow-xl: 0 16px 48px rgba(37, 99, 235, 0.16);
+
+  /* 圆角 */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* 动画时长 */
+  --duration-fast: 0.2s;
+  --duration-normal: 0.3s;
+  --duration-slow: 0.5s;
+
+  /* 缓动函数 */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* 暗色模式变量 */
+html[data-mode='dark'] {
+  --modern-primary: #60a5fa;                    /* 暗色模式下稍浅的蓝色 */
+  --modern-gradient: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+
+  --glass-bg: rgba(30, 30, 40, 0.8);
+  --glass-border: rgba(96, 165, 250, 0.15);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  /* 暗色模式阴影 */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
+}

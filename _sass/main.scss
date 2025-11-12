@@ -3,19 +3,33 @@
 @forward 'layout';
 @forward 'pages';
 
-/* 自定义样式 */
-@import 'custom/sidebar-enhanced';
-@import 'custom/post-copyright-enhanced';
+/* ========================= 自定义样式 ========================= */
+// CSS 变量定义
+@use 'custom/variables';
+
+// 基础效果：毛玻璃、字体
+@use 'custom/base';
+
+// 布局组件美化：顶部导航栏 Topbar、侧边栏 Sidebar、页脚 Footer
+@use 'custom/layout';
+
+// 页面组件美化：卡片、标签、分页、面包屑、TOC、元信息、返回顶部按钮、版权声明
+@use 'custom/components';
+
+// 发布内容增强：图片、引用、表格
+@use 'custom/content';
+
+// 页面UI优化：滚动条、加载动画、工具类
+@use 'custom/ui';
 
 .custom-fa-leetcode {
+  background-image: url(/assets/img/leetcode.svg);
+}
+
+.custom-fa {
   width: 1.25em;
   height: 100%;
-  background-image: url(/assets/img/leetcode.svg);
   background-size: 16px;
   background-repeat: no-repeat;
   background-position: center;
-}
-
-.access{
-  display: none;
 }

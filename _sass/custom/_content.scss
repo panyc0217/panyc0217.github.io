@@ -1,0 +1,67 @@
+/*
+ * 内容增强样式
+ *
+ * 包含文章内容区域的各种元素美化：
+ * - 图片
+ * - 引用块
+ * - 表格
+ */
+
+/* ==================== 图片 ==================== */
+
+.content img {
+  border-radius: var(--radius-md);
+  transition: all var(--duration-normal) var(--ease-smooth);
+  box-shadow: var(--shadow-sm);
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+/* ==================== 引用块 ==================== */
+
+blockquote {
+  border-radius: var(--radius-md);
+  border-left-width: 4px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ==================== 表格 ==================== */
+
+.table-wrapper > table {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+
+  thead {
+    background: linear-gradient(135deg,
+      rgba(var(--modern-primary-rgb), 0.1),
+      rgba(var(--modern-primary-rgb), 0.05)
+    );
+
+    th {
+      font-weight: 700;
+      padding: 1rem;
+      border-bottom: 2px solid rgba(var(--modern-primary-rgb), 0.2);
+    }
+  }
+
+  tbody {
+    tr {
+      transition: background var(--duration-fast);
+
+      &:hover {
+        background: rgba(var(--modern-primary-rgb), 0.08) !important;
+      }
+
+      td {
+        padding: 0.875rem 1rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,642 @@
+/*
+ * 通用基础效果样式
+ */
+
+/* ==================== 毛玻璃效果 ==================== */
+
+.glass-effect {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+/* ==================== 字体优化 ==================== */
+
+/* 更好的字体渲染 */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1;
+}
+
+/* 标题字体优化 */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--heading-color);
+
+  /* 标题渐变效果 - 不使用 text-fill-color 以避免影响公式显示 */
+  /* background: linear-gradient(135deg,
+    var(--heading-color) 0%,
+    var(--heading-color) 60%,
+    rgba(var(--modern-primary-rgb), 0.8) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent; */
+}
+
+/* 正文字体 */
+p {
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+  word-spacing: 0.02em;
+}
+
+/* 链接优化 */
+a {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    color: var(--modern-primary);
+  }
+}
+
+/* ==================== 间距优化 ==================== */
+
+/* 文章内容间距 */
+.content {
+  > * + * {
+    margin-top: 1.5rem;
+  }
+
+  > h2 {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(var(--modern-primary-rgb), 0.15);
+  }
+
+  > h3 {
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  > h4, > h5, > h6 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  /* 列表间距 */
+  ul, ol {
+    padding-left: 2rem;
+
+    li {
+      margin: 0.75rem 0;
+      line-height: 1.8;
+
+      &::marker {
+        color: var(--modern-primary);
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+/* ==================== 颜色微调 ==================== */
+
+/* 主题色应用 */
+.text-primary,
+.link-primary {
+  color: var(--modern-primary) !important;
+}
+
+/* 柔和的背景色 */
+.bg-light {
+  background: linear-gradient(135deg,
+    rgba(var(--modern-primary-rgb), 0.03),
+    rgba(var(--modern-primary-rgb), 0.08)
+  ) !important;
+}
+
+/* ==================== 文章头部优化 ==================== */
+
+article header {
+  position: relative;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+
+  /* 底部装饰线 */
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 61.803398875%;
+    height: 3px;
+    background: linear-gradient(90deg,
+      transparent,
+      rgba(var(--modern-primary-rgb), 0.8),
+      transparent
+    );
+    border-radius: 3px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+
+  .post-desc {
+    font-size: 1.15rem;
+    color: var(--text-muted-color);
+    line-height: 1.6;
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+    border-left: 4px solid rgba(var(--modern-primary-rgb), 0.5);
+  }
+}
+
+/* ==================== 文章底部优化 ==================== */
+
+.post-tail-wrapper {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 2px solid rgba(var(--modern-primary-rgb), 0.15);
+}
+
+/* ==================== 分类和标签区域 ==================== */
+
+.post-meta {
+  .categories,
+  .tags {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+}
+
+/* 分类链接 */
+a.category {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 1rem;
+  background: linear-gradient(135deg,
+    rgba(var(--modern-primary-rgb), 0.1),
+    rgba(var(--modern-primary-rgb), 0.05)
+  );
+  border-radius: 20px;
+  border: 1px solid rgba(var(--modern-primary-rgb), 0.2);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background: linear-gradient(135deg,
+      rgba(var(--modern-primary-rgb), 0.2),
+      rgba(var(--modern-primary-rgb), 0.1)
+    );
+    border-color: rgba(var(--modern-primary-rgb), 0.4);
+    transform: translateY(-2px);
+  }
+
+  i {
+    margin-right: 0.5rem;
+    color: var(--modern-primary);
+  }
+}
+
+/* ==================== 相关文章优化 ==================== */
+
+#related-posts {
+  .card {
+    border-radius: 12px;
+    border: 1px solid rgba(var(--modern-primary-rgb), 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      transform: translateX(8px);
+      border-color: rgba(var(--modern-primary-rgb), 0.3);
+      box-shadow: -4px 0 12px rgba(var(--modern-primary-rgb), 0.2);
+    }
+  }
+}
+
+/* ==================== 文章导航优化 ==================== */
+
+/* 注释掉以避免与 Chirpy 原生样式冲突 */
+/*
+.post-navigation {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+
+  a {
+    padding: 1.5rem;
+    background: linear-gradient(135deg,
+      rgba(var(--modern-primary-rgb), 0.05),
+      rgba(var(--modern-primary-rgb), 0.02)
+    );
+    border-radius: 12px;
+    border: 2px solid rgba(var(--modern-primary-rgb), 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    display: block;
+
+    &:hover {
+      border-color: rgba(var(--modern-primary-rgb), 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(var(--modern-primary-rgb), 0.2);
+    }
+
+    .nav-label {
+      font-size: 0.85rem;
+      color: var(--text-muted-color);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .nav-title {
+      font-weight: 600;
+      color: var(--heading-color);
+      line-height: 1.4;
+    }
+  }
+}
+*/
+
+/* ==================== 归档页面优化 ==================== */
+
+#archives {
+  .year {
+    font-size: 2rem;
+    font-weight: 800;
+    background: var(--modern-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 2rem 0 1.5rem;
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--modern-gradient);
+      border-radius: 3px;
+    }
+  }
+
+  .archive-item {
+    padding: 1rem 1.5rem;
+    margin: 0.5rem 0;
+    border-radius: 12px;
+    border-left: 4px solid transparent;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      background: rgba(var(--modern-primary-rgb), 0.08);
+      border-left-color: rgba(var(--modern-primary-rgb), 0.8);
+      padding-left: 2rem;
+    }
+
+    .date {
+      color: var(--text-muted-color);
+      font-weight: 600;
+      font-size: 0.9rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .title {
+      font-weight: 600;
+      color: var(--heading-color);
+      transition: color 0.3s;
+
+      &:hover {
+        color: var(--modern-primary);
+      }
+    }
+  }
+}
+
+/* ==================== 时间轴优化 ==================== */
+
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg,
+      rgba(var(--modern-primary-rgb), 0.2),
+      rgba(var(--modern-primary-rgb), 0.6),
+      rgba(var(--modern-primary-rgb), 0.2)
+    );
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 2rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -2.5rem;
+      top: 0.5rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--modern-gradient);
+      border: 3px solid var(--main-bg);
+      box-shadow: 0 0 0 2px rgba(var(--modern-primary-rgb), 0.3);
+    }
+  }
+}
+
+/* ==================== 搜索结果优化 ==================== */
+
+#search-results {
+  .result-item {
+    padding: 1.5rem;
+    margin: 1rem 0;
+    background: linear-gradient(135deg,
+      rgba(var(--modern-primary-rgb), 0.03),
+      rgba(var(--modern-primary-rgb), 0.01)
+    );
+    border-radius: 12px;
+    border-left: 4px solid rgba(var(--modern-primary-rgb), 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      transform: translateX(8px);
+      background: rgba(var(--modern-primary-rgb), 0.08);
+      border-left-color: rgba(var(--modern-primary-rgb), 0.8);
+      box-shadow: -4px 0 12px rgba(var(--modern-primary-rgb), 0.15);
+    }
+
+    .title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--heading-color);
+
+      mark {
+        background: rgba(var(--modern-primary-rgb), 0.3);
+        color: var(--modern-primary);
+        padding: 0.1em 0.3em;
+        border-radius: 4px;
+      }
+    }
+
+    .snippet {
+      color: var(--text-color);
+      line-height: 1.6;
+
+      mark {
+        background: rgba(var(--modern-primary-rgb), 0.2);
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+/* ==================== 徽章优化 ==================== */
+
+.badge {
+  padding: 0.4em 0.8em;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85em;
+  letter-spacing: 0.02em;
+  border: 1px solid currentColor;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.badge-primary {
+  background: var(--modern-gradient);
+  border-color: transparent;
+  color: white;
+}
+
+/* ==================== 提示框优化 ==================== */
+
+.alert {
+  border-radius: 12px;
+  border-left-width: 4px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  &-info {
+    background: linear-gradient(135deg,
+      rgba(0, 112, 209, 0.05),
+      rgba(0, 112, 209, 0.02)
+    );
+    border-left-color: rgb(0, 112, 209);
+  }
+
+  &-success {
+    background: linear-gradient(135deg,
+      rgba(15, 164, 15, 0.05),
+      rgba(15, 164, 15, 0.02)
+    );
+    border-left-color: rgb(15, 164, 15);
+  }
+
+  &-warning {
+    background: linear-gradient(135deg,
+      rgba(239, 156, 3, 0.05),
+      rgba(239, 156, 3, 0.02)
+    );
+    border-left-color: rgb(239, 156, 3);
+  }
+
+  &-danger {
+    background: linear-gradient(135deg,
+      rgba(223, 60, 48, 0.05),
+      rgba(223, 60, 48, 0.02)
+    );
+    border-left-color: rgb(223, 60, 48);
+  }
+}
+
+/* ==================== 图片画廊优化 ==================== */
+
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+
+  img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: 2px solid rgba(var(--modern-primary-rgb), 0.1);
+
+    &:hover {
+      transform: scale(1.05) rotate(1deg);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      border-color: rgba(var(--modern-primary-rgb), 0.4);
+    }
+  }
+}
+
+/* ==================== 代码复制按钮优化 ==================== */
+
+.copy-code-button {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.5rem 1rem;
+  background: rgba(var(--modern-primary-rgb), 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--modern-primary-rgb), 0.3);
+  border-radius: 8px;
+  color: var(--modern-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+
+  &:hover {
+    background: rgba(var(--modern-primary-rgb), 0.25);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  .highlight:hover & {
+    opacity: 1;
+  }
+}
+
+/* ==================== 响应式微调 ==================== */
+
+@media (max-width: 768px) {
+  article header h1 {
+    font-size: 1.75rem;
+  }
+
+  .content > h2 {
+    margin-top: 2rem;
+  }
+
+  .post-navigation {
+    grid-template-columns: 1fr;
+  }
+
+  #archives .year {
+    font-size: 1.5rem;
+  }
+}
+
+/* ==================== 暗色模式调整 ==================== */
+
+html[data-mode='dark'] {
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color);
+    /* 暗色模式标题渐变 - 不使用 text-fill-color 以避免影响公式显示 */
+    /* background: linear-gradient(135deg,
+      var(--heading-color) 0%,
+      var(--heading-color) 60%,
+      rgba(var(--modern-primary-rgb), 1) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent; */
+  }
+
+  .bg-light {
+    background: linear-gradient(135deg,
+      rgba(var(--modern-primary-rgb), 0.05),
+      rgba(var(--modern-primary-rgb), 0.1)
+    ) !important;
+  }
+}
+
+/* ==================== 无障碍优化 ==================== */
+
+/* 跳转到主内容链接 */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--modern-gradient);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0 0 8px 0;
+  font-weight: 600;
+  z-index: 10000;
+  transition: top 0.3s;
+
+  &:focus {
+    top: 0;
+  }
+}
+
+/* 焦点可见性增强 */
+*:focus-visible {
+  outline: 3px solid rgba(var(--modern-primary-rgb), 0.6);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ==================== 打印样式优化 ==================== */
+
+@media print {
+  /* 去除不必要的元素 */
+  #sidebar,
+  #topbar-wrapper,
+  #back-to-top,
+  .sidebar-bottom,
+  .post-navigation,
+  #related-posts {
+    display: none !important;
+  }
+
+  /* 优化文章打印 */
+  article {
+    max-width: 100%;
+    margin: 0;
+  }
+
+  /* 去除背景和阴影 */
+  *,
+  *::before,
+  *::after {
+    background: white !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* 保留链接信息 */
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+}

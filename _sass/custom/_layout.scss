@@ -1,0 +1,578 @@
+/*
+ * 布局相关样式
+ * - Topbar 顶栏
+ * - Sidebar 侧边栏
+ * - Footer 页脚
+ * - 其他布局相关样式
+ */
+
+/* ==================== Topbar 优雅毛玻璃效果 ==================== */
+
+#topbar-wrapper {
+  /* 毛玻璃效果 */
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(200%);
+  -webkit-backdrop-filter: blur(16px) saturate(200%);
+  border: none;
+  position: relative;
+}
+
+/* ==================== 面包屑导航美化 ==================== */
+
+#breadcrumb {
+  a {
+    position: relative;
+    transition: all 0.2s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--modern-gradient);
+      transition: width 0.3s ease;
+    }
+
+    &:hover {
+      color: var(--modern-primary) !important;
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  span:not(:last-child)::after {
+    color: rgba(var(--modern-primary-rgb), 0.5) !important;
+    font-weight: bold;
+  }
+}
+
+/* ==================== 搜索框容器美化 ==================== */
+
+search {
+  border: 1px solid rgba(var(--modern-primary-rgb), 0.15) !important;
+  border-radius: 1.5rem !important;
+  background: var(--main-bg) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s var(--ease-smooth);
+  padding: 0.25rem 0.75rem !important;
+
+  &:hover {
+    border-color: rgba(var(--modern-primary-rgb), 0.3) !important;
+    box-shadow: 0 4px 12px rgba(var(--modern-primary-rgb), 0.1);
+  }
+
+  &:focus-within {
+    border-color: rgba(var(--modern-primary-rgb), 0.5) !important;
+    box-shadow: 0 0 0 4px rgba(var(--modern-primary-rgb), 0.1),
+    0 4px 16px rgba(var(--modern-primary-rgb), 0.15);
+    transform: translateY(-1px);
+  }
+
+  /* 搜索图标美化 */
+  i {
+    color: rgba(var(--modern-primary-rgb), 0.8) !important;
+    font-size: 1rem !important;
+    transition: all 0.3s ease;
+  }
+
+  &:focus-within i {
+    color: var(--modern-primary) !important;
+    transform: scale(1.1);
+  }
+}
+
+/* ==================== 搜索框输入美化 ==================== */
+
+#search-input {
+  border: none !important;
+  background: transparent !important;
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.95rem;
+  transition: all 0.3s var(--ease-smooth);
+
+  &:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  &::placeholder {
+    color: var(--text-muted-color);
+    font-weight: 400;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+  }
+
+  &:focus::placeholder {
+    opacity: 0.4;
+  }
+}
+
+/* ==================== 移动端按钮美化 ==================== */
+
+#sidebar-trigger,
+#search-trigger {
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(var(--modern-primary-rgb), 0.1);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+/* ==================== Topbar 标题美化 ==================== */
+
+#topbar-title {
+  font-weight: 600 !important;
+  background: var(--modern-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+/* ==================== Sidebar 侧边栏美化 ==================== */
+
+#sidebar {
+  /* 添加微妙的内阴影，增加层次感 */
+  box-shadow: inset -1px 0 0 0 var(--sidebar-border-color);
+
+  /* 头像增强效果 */
+  #avatar {
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* 渐变边框效果 */
+    box-shadow:
+      0 0 0 2px var(--avatar-border-color),
+      0 0 20px rgba(var(--modern-primary-rgb), 0.3),
+      0 4px 12px rgba(0, 0, 0, 0.15);
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(135deg,
+        rgba(var(--modern-primary-rgb), 0.6),
+        rgba(var(--modern-primary-rgb), 0.2),
+        rgba(var(--modern-primary-rgb), 0.6)
+      );
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 0 0 2px var(--avatar-border-color),
+        0 0 30px rgba(var(--modern-primary-rgb), 0.5),
+        0 8px 24px rgba(0, 0, 0, 0.2);
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    img {
+      border-radius: 50%;
+    }
+  }
+
+  /* 站点标题渐变效果 */
+  .site-title {
+    background: linear-gradient(135deg,
+      var(--site-title-color) 0%,
+      var(--sidebar-active-color) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg,
+        rgba(var(--modern-primary-rgb), 0.8),
+        rgba(var(--modern-primary-rgb), 0.3)
+      );
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
+
+  /* 副标题增强 */
+  .site-subtitle {
+    opacity: 0.8;
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  /* 导航项美化 */
+  ul li.nav-item {
+    position: relative;
+    overflow: hidden;
+
+    a.nav-link {
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      border-radius: 12px;
+      margin: 4px 8px;
+      padding: 10px 16px;
+
+      /* 悬停背景渐变 */
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg,
+          transparent,
+          rgba(var(--modern-primary-rgb), 0.08),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      &:hover {
+        transform: translateX(6px);
+        background: rgba(var(--modern-primary-rgb), 0.05);
+
+        &::after {
+          left: 100%;
+        }
+      }
+
+      /* 图标容器 */
+      i {
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        text-align: center;
+        border-radius: 8px;
+        margin-right: 12px;
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &::before {
+          position: relative;
+          z-index: 1;
+        }
+      }
+
+      &:hover i {
+        transform: scale(1.15) rotate(5deg);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      span {
+        position: relative;
+        z-index: 1;
+      }
+    }
+
+    /* 激活状态 */
+    &.active .nav-link {
+      font-weight: 700;
+      background: rgba(var(--modern-primary-rgb), 0.08);
+
+      i {
+        transform: scale(1.1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  /* ==================== 统一优雅主题 ==================== */
+
+  /* 所有导航项 - 统一的优雅蓝色主题 */
+  ul li.nav-item {
+    a.nav-link i {
+      background: linear-gradient(135deg,
+        rgba(var(--modern-primary-rgb), 0.15),
+        rgba(var(--modern-primary-rgb), 0.08)
+      );
+      color: var(--sidebar-active-color);
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        background: linear-gradient(135deg,
+          rgba(var(--modern-primary-rgb), 0.4),
+          rgba(var(--modern-primary-rgb), 0.2)
+        );
+        border-radius: 10px;
+        opacity: 0;
+        filter: blur(8px);
+        transition: opacity 0.3s;
+        z-index: -1;
+      }
+    }
+
+    a.nav-link:hover i {
+      background: linear-gradient(135deg,
+        rgba(var(--modern-primary-rgb), 0.25),
+        rgba(var(--modern-primary-rgb), 0.15)
+      );
+
+      &::after {
+        opacity: 0.6;
+      }
+    }
+
+    &.active a.nav-link i {
+      background: linear-gradient(135deg,
+        rgba(var(--modern-primary-rgb), 0.3),
+        rgba(var(--modern-primary-rgb), 0.2)
+      );
+      box-shadow: 0 2px 12px rgba(var(--modern-primary-rgb), 0.25);
+
+      &::after {
+        opacity: 0.5;
+      }
+    }
+
+    /* 左侧指示条 */
+    a.nav-link::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 0;
+      background: linear-gradient(180deg,
+        rgba(var(--modern-primary-rgb), 0.8),
+        rgba(var(--modern-primary-rgb), 0.4)
+      );
+      border-radius: 0 3px 3px 0;
+      transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    a.nav-link:hover::before,
+    &.active a.nav-link::before {
+      height: 70%;
+    }
+
+    &.active a.nav-link::before {
+      background: linear-gradient(180deg,
+        rgba(var(--modern-primary-rgb), 1),
+        rgba(var(--modern-primary-rgb), 0.6)
+      );
+    }
+  }
+
+  /* 底部按钮美化 - 统一优雅主题 */
+  .sidebar-bottom {
+    padding: 0.75rem 0.5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+
+    a, #mode-toggle {
+      position: relative;
+      width: 1.75rem;
+      height: 1.75rem;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: linear-gradient(135deg,
+        rgba(var(--modern-primary-rgb), 0.12),
+        rgba(var(--modern-primary-rgb), 0.06)
+      );
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 12px;
+        background: linear-gradient(135deg,
+          rgba(var(--modern-primary-rgb), 0.25),
+          rgba(var(--modern-primary-rgb), 0.15)
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        border-radius: 14px;
+        background: linear-gradient(135deg,
+          rgba(var(--modern-primary-rgb), 0.4),
+          rgba(var(--modern-primary-rgb), 0.2)
+        );
+        opacity: 0;
+        filter: blur(8px);
+        transition: opacity 0.3s;
+        z-index: -1;
+      }
+
+      &:hover {
+        transform: translateY(-4px) scale(1.1);
+        box-shadow: 0 8px 16px rgba(var(--modern-primary-rgb), 0.2);
+        background: linear-gradient(135deg,
+          rgba(var(--modern-primary-rgb), 0.2),
+          rgba(var(--modern-primary-rgb), 0.12)
+        );
+
+        &::before {
+          opacity: 1;
+        }
+
+        &::after {
+          opacity: 0.6;
+        }
+      }
+
+      &:active {
+        transform: translateY(-2px) scale(1.05);
+      }
+
+      i {
+        position: relative;
+        z-index: 1;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        font-size: 1.1rem;
+        color: var(--sidebar-active-color);
+      }
+
+      &:hover i {
+        transform: scale(1.2);
+        color: var(--modern-primary);
+      }
+    }
+
+    /* 主题切换按钮 - 旋转动画 */
+    #mode-toggle:hover i {
+      transform: rotate(180deg) scale(1.2);
+    }
+  }
+
+  /* 滚动时的渐变遮罩（顶部和底部） */
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 30px;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  &::before {
+    top: 0;
+    background: linear-gradient(to bottom,
+      var(--sidebar-bg) 0%,
+      transparent 100%
+    );
+  }
+
+  &::after {
+    bottom: 0;
+    background: linear-gradient(to top,
+      var(--sidebar-bg) 0%,
+      transparent 100%
+    );
+  }
+}
+
+/* 响应式优化 */
+@media (max-width: 991px) {
+  #sidebar {
+    /* 移动端显示时添加阴影 */
+    box-shadow:
+      2px 0 20px rgba(0, 0, 0, 0.3),
+      inset -1px 0 0 0 var(--sidebar-border-color);
+  }
+}
+
+/* 暗色模式特殊调整 */
+@media (prefers-color-scheme: dark) {
+  html[data-mode='dark'] #sidebar {
+    .site-title {
+      background: linear-gradient(135deg,
+        #ffffff 0%,
+        rgba(var(--modern-primary-rgb), 1) 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}
+
+/* 为特定主题模式覆盖样式 */
+html[data-mode='dark'] #sidebar {
+  .site-title {
+    background: linear-gradient(135deg,
+      #ffffff 0%,
+      rgba(var(--modern-primary-rgb), 1) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* ==================== Footer 页脚美化 ==================== */
+
+footer {
+  border-top: 1px solid rgba(var(--modern-primary-rgb), 0.1);
+
+  /* 添加渐变顶边 */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 5%;
+    right: 5%;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent,
+      rgba(var(--modern-primary-rgb), 0.5),
+      transparent
+    );
+  }
+}
