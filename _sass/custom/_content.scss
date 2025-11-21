@@ -25,10 +25,87 @@
 blockquote {
   border-radius: var(--radius-md);
   border-left-width: 4px;
-  padding: 1.25rem 1.5rem;
+  border-left-style: solid;
+  border-image: var(--modern-gradient) 1;
+  padding: 1.25rem 1.5rem 1.25rem 1.75rem;
   margin: 1.5rem 0;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(
+    to right,
+    rgba(var(--modern-primary-rgb), 0.05),
+    rgba(var(--modern-primary-rgb), 0.01)
+  );
+  box-shadow: var(--shadow-sm);
+  transition: all var(--duration-normal) var(--ease-smooth);
+
+  /* 装饰性引号 */
+  &::before {
+    content: '\201C';
+    position: absolute;
+    left: 0.5rem;
+    top: 0.5rem;
+    font-size: 2.5rem;
+    line-height: 1;
+    color: rgba(var(--modern-primary-rgb), 0.15);
+    font-family: Georgia, serif;
+    font-weight: bold;
+    pointer-events: none;
+  }
+
+  /* hover效果 */
+  &:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  /* 段落样式 */
+  p {
+    margin-bottom: 0.75rem;
+    line-height: 1.8;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  /* 强调文本 */
+  strong, b {
+    color: var(--modern-primary);
+    font-weight: 600;
+  }
+
+  /* 链接样式 */
+  a {
+    color: var(--modern-primary);
+    text-decoration: underline;
+    text-decoration-color: rgba(var(--modern-primary-rgb), 0.3);
+    transition: text-decoration-color var(--duration-fast);
+
+    &:hover {
+      text-decoration-color: var(--modern-primary);
+    }
+  }
+
+  /* 代码块样式 */
+  code {
+    background: rgba(var(--modern-primary-rgb), 0.08);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+}
+
+/* 暗色模式下的引用块调整 */
+html[data-mode='dark'] blockquote {
+  background: linear-gradient(
+    to right,
+    rgba(var(--modern-primary-rgb), 0.08),
+    rgba(var(--modern-primary-rgb), 0.02)
+  );
+
+  &::before {
+    color: rgba(var(--modern-primary-rgb), 0.2);
+  }
 }
 
 /* ==================== 表格 ==================== */

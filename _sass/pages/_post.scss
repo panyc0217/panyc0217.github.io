@@ -24,18 +24,42 @@ header {
   }
 
   .post-meta {
-    span + span::before {
-      @include -dot;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--text-muted-color);
+
+    > span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.75rem;
+      background: rgba(var(--modern-primary-rgb), 0.05);
+      border-radius: 6px;
+      transition: background 0.25s ease;
+
+      &:hover {
+        background: rgba(var(--modern-primary-rgb), 0.1);
+      }
     }
 
     em,
     time {
       @extend %text-highlight;
+      font-weight: 500;
     }
 
     em {
       a {
         color: inherit;
+        text-decoration: none;
+        transition: color 0.25s ease;
+
+        &:hover {
+          color: var(--modern-primary);
+        }
       }
     }
   }
@@ -67,8 +91,28 @@ header {
     }
   } /* .license-wrapper */
 
-  .post-meta a:not(:hover) {
-    @extend %link-underline;
+  /* 底部分类和标签元数据优化 */
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+
+    i {
+      color: var(--modern-primary);
+      opacity: 0.7;
+    }
+
+    a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.25s ease;
+
+      &:hover {
+        color: var(--modern-primary);
+      }
+    }
   }
 
   .share-wrapper {

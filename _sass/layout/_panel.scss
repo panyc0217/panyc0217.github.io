@@ -5,7 +5,7 @@
 .access {
   top: 2rem;
   transition: top 0.2s ease-in-out;
-  margin-top: 3rem;
+  margin-top: 2.5rem;
 
   &:only-child {
     position: -webkit-sticky;
@@ -13,40 +13,67 @@
   }
 
   > section {
-    @extend %panel-border;
-
-    padding-left: 1rem;
+    padding: 1.25rem;
+    background: var(--card-bg);
+    border-radius: 8px;
+    border: 1px solid rgba(var(--modern-primary-rgb), 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
 
     &:not(:first-child) {
-      margin-top: 4rem;
+      margin-top: 2rem;
     }
   }
 
   .content {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 }
 
 #panel-wrapper {
-  /* the headings */
+  /* 标题样式优化 */
   .panel-heading {
     font-family: inherit;
-    line-height: inherit;
-
-    @include mx.label(inherit);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(var(--modern-primary-rgb), 0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
-  .post-tag {
-    line-height: 1.05rem;
-    font-size: 0.85rem;
-    border-radius: 0.8rem;
-    padding: 0.3rem 0.5rem;
-    margin: 0 0.35rem 0.5rem 0;
+  /* 热门标签容器 */
+  .access > section {
+    /* 热门标签区域 */
+    &:last-child {
+      .d-flex.flex-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem !important;
+        margin-right: 0 !important;
+        margin-bottom: 0.5rem !important;
+      }
 
-    &:hover {
-      transition: all 0.3s ease-in;
+      a.post-tag {
+        margin: 0 !important;
+      }
     }
   }
+
+  /* 备用选择器 */
+  #access-tags .d-flex {
+    gap: 0.5rem !important;
+  }
+
+  #access-tags a.post-tag {
+    margin: 0 !important;
+  }
+
+  /* 标签样式继承自 _components.scss，无需重复定义 */
 
   > :last-child {
     margin-bottom: 4rem;
@@ -57,12 +84,44 @@
   }
 }
 
+/* 最近更新列表优化 */
 #access-lastmod {
+  ul.content {
+    margin: 0;
+    padding: 0;
+    /* 固定容器，防止内容变化导致抖动 */
+    min-height: 0;
+  }
+
+  li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(var(--modern-primary-rgb), 0.06);
+    /* 防止行高变化 */
+    line-height: 1.6;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
   a {
-    color: inherit;
+    color: var(--text-color);
+    /* 使用 transform 而非 font-weight 变化，避免宽度变化 */
+    font-weight: 500;
+    transition: color 0.25s ease;
+    display: block;
+    position: relative;
+    padding-left: 0.75rem;
+    /* 确保文本不会因为渲染差异导致宽度变化 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
     &:hover {
-      @extend %link-hover;
+      color: var(--modern-primary);
+
+      &::before {
+        height: 70%;
+      }
     }
 
     @extend %no-bottom-border;

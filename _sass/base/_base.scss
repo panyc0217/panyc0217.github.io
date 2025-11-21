@@ -51,7 +51,7 @@ h1.dynamic-title {
     display: none;
 
     ~ .content {
-      margin-top: 2.5rem;
+      margin-top: 1rem;
     }
   }
 }
@@ -415,6 +415,8 @@ mjx-container {
 
 #main-wrapper {
   position: relative;
+
+  padding-top: 1rem;
 
   @include mx.pl-pr(0);
 

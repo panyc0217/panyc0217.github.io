@@ -15,65 +15,135 @@
 /* ==================== 文章卡片 ==================== */
 
 #post-list {
+  .card-wrapper {
+    margin-bottom: 2rem !important;
+  }
+
   .card {
     border-radius: var(--radius-lg);
     overflow: hidden;
     transition: all var(--duration-normal) var(--ease-smooth);
     position: relative;
-    border: 1px solid rgba(var(--modern-primary-rgb), 0.1);
+    border: 1px solid rgba(var(--modern-primary-rgb), 0.08);
+    background: linear-gradient(135deg,
+      rgba(var(--modern-primary-rgb), 0.02),
+      transparent
+    );
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 
-    /* 渐变边框效果 */
-    &::before {
+    /* 微妙的顶部高光 */
+    &::after {
       content: '';
       position: absolute;
-      inset: 0;
-      border-radius: var(--radius-lg);
-      padding: 2px;
-      background: linear-gradient(135deg,
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent,
         rgba(var(--modern-primary-rgb), 0.3),
-        rgba(var(--modern-primary-rgb), 0.1),
         transparent
       );
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
       opacity: 0;
       transition: opacity var(--duration-normal);
     }
 
     &:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: var(--shadow-xl);
-      border-color: rgba(var(--modern-primary-rgb), 0.3);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(var(--modern-primary-rgb), 0.12);
+      border-color: rgba(var(--modern-primary-rgb), 0.2);
 
-      &::before {
+      &::after {
         opacity: 1;
       }
 
-      .card-img-top {
-        transform: scale(1.1);
+      .preview-img img {
+        transform: scale(1.08);
+      }
+
+      .card-title {
+        color: var(--modern-primary) !important;
       }
     }
 
-    .card-img-top {
-      transition: transform var(--duration-slow) var(--ease-smooth);
+    .preview-img {
+      overflow: hidden;
+
+      img {
+        transition: transform var(--duration-slow) var(--ease-smooth);
+      }
     }
 
     .card-body {
       padding: 1.5rem;
 
+      @media (min-width: 768px) {
+        padding: 2rem;
+      }
+
       .card-title {
         font-weight: 700;
-        background: linear-gradient(135deg, var(--heading-color), var(--modern-primary));
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        transition: all var(--duration-normal);
+        font-size: 1.35rem;
+        margin-bottom: 0.75rem;
+        line-height: 1.4;
+        transition: color var(--duration-normal);
 
-        &:hover {
-          transform: translateX(4px);
+        @media (min-width: 768px) {
+          font-size: 1.5rem;
+        }
+      }
+
+      .card-text.content {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin-bottom: 1rem;
+        color: var(--text-muted-color);
+      }
+
+      .post-meta {
+        font-size: 0.8rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.25rem;
+        color: var(--text-muted-color);
+
+        > div {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 0.25rem;
+        }
+
+        i {
+          color: var(--modern-primary);
+          opacity: 0.7;
+        }
+
+        time {
+          margin-right: 1rem;
+        }
+
+        .categories {
+          margin-right: 0.5rem;
+        }
+
+        /* 置顶标签 */
+        .pin {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.25rem;
+          padding: 0.2rem 0.5rem;
+          background: var(--modern-primary);
+          border-radius: 4px;
+          color: white;
+          font-size: 0.7rem;
+          font-weight: 500;
+
+          i {
+            color: white;
+            opacity: 1;
+          }
         }
       }
     }
@@ -115,27 +185,55 @@
   }
 }
 
-/* ==================== 标签 ==================== */
+/* ==================== 标签容器（通用） ==================== */
+
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  line-height: 1;
+
+  /* 图标样式 */
+  > i {
+    color: var(--modern-primary);
+    opacity: 0.7;
+    font-size: 0.9rem;
+  }
+}
+
+/* ==================== 标签样式（通用） ==================== */
+/* 文章标签和热门标签使用统一样式 */
 
 .post-tag {
-  border-radius: var(--radius-md);
-  padding: 0.35rem 0.9rem;
-  font-weight: 600;
-  font-size: 0.85rem;
-  letter-spacing: 0.03em;
-  transition: all var(--duration-normal) var(--ease-bounce);
-  border: 2px solid transparent;
-  background: linear-gradient(135deg,
-    rgba(var(--modern-primary-rgb), 0.08),
-    rgba(var(--modern-primary-rgb), 0.04)
-  );
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-color);
+  background: rgba(var(--modern-primary-rgb), 0.06);
+  border: 1px solid rgba(var(--modern-primary-rgb), 0.12);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.25s ease;
 
   &:hover {
-    transform: translateY(-2px) scale(1.05);
-    background: rgba(var(--modern-primary-rgb), 0.15);
-    border-color: rgba(var(--modern-primary-rgb), 0.3);
     color: var(--modern-primary);
-    box-shadow: var(--shadow-md);
+    background: rgba(var(--modern-primary-rgb), 0.12);
+    border-color: rgba(var(--modern-primary-rgb), 0.25);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* 暗色模式标签优化 */
+html[data-mode='dark'] .post-tag {
+  &:hover {
+    background: rgba(var(--modern-primary-rgb), 0.15);
   }
 }
 
@@ -144,19 +242,25 @@
 .pagination {
   display: flex;
   gap: 0.5rem;
+  margin-top: 3rem;
+  justify-content: center;
 
   .page-item {
     .page-link {
+      padding: 0.5rem 1rem;
       border-radius: var(--radius-md);
-      border: 2px solid rgba(var(--modern-primary-rgb), 0.15);
-      background: transparent;
+      border: 1px solid rgba(var(--modern-primary-rgb), 0.1);
+      background: rgba(var(--modern-primary-rgb), 0.02);
       transition: all var(--duration-normal) var(--ease-smooth);
       font-weight: 600;
+      color: var(--text-color);
 
       &:hover {
-        background: rgba(var(--modern-primary-rgb), 0.15);
-        border-color: rgba(var(--modern-primary-rgb), 0.4);
+        background: rgba(var(--modern-primary-rgb), 0.1);
+        border-color: rgba(var(--modern-primary-rgb), 0.3);
         transform: translateY(-2px);
+        color: var(--modern-primary);
+        box-shadow: 0 4px 12px rgba(var(--modern-primary-rgb), 0.15);
       }
     }
 
@@ -164,11 +268,23 @@
       background: var(--modern-gradient);
       border-color: transparent;
       box-shadow: var(--shadow-md);
+      color: white;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
     }
 
     &.disabled .page-link {
-      opacity: 0.5;
+      opacity: 0.4;
       cursor: not-allowed;
+      background: transparent;
+
+      &:hover {
+        transform: none;
+        box-shadow: none;
+      }
     }
   }
 }
@@ -210,18 +326,18 @@
   border: 1px solid rgba(var(--modern-primary-rgb), 0.15);
   overflow: hidden;
 
+  /* 移除默认的 pe-4 和 pb-4 类的 padding */
+  padding-right: 0 !important;
+  padding-bottom: 0 !important;
+
   .panel-heading {
-    background: linear-gradient(135deg,
-      rgba(var(--modern-primary-rgb), 0.1),
-      rgba(var(--modern-primary-rgb), 0.05)
-    );
     font-weight: 700;
     padding: 1rem 1.5rem;
     border-bottom: 1px solid rgba(var(--modern-primary-rgb), 0.15);
   }
 
   #toc {
-    padding: 1rem 1.5rem;
+    padding: 1rem;
 
     a {
       padding: 0.5rem 1rem;
@@ -247,7 +363,7 @@
 
       &:hover {
         background: rgba(var(--modern-primary-rgb), 0.1);
-        padding-left: 1.5rem;
+        padding-left: 1rem;
 
         &::before {
           height: 70%;
@@ -367,7 +483,6 @@
   }
 
   &:hover {
-    transform: translateX(4px);
     box-shadow: -4px 0 12px rgba(var(--modern-primary-rgb), 0.15);
     border-left-color: rgba(var(--modern-primary-rgb), 0.9);
   }
